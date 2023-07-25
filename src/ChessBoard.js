@@ -39,6 +39,12 @@ class ChessBoard extends React.Component {
         ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1']
         ]
 
+      //Initialize the state
+      this.state = {
+        //A 1d array with information about the current state of each square on the board
+        cellInfo: []
+        }
+
         //Initialize temporary variables for cell data
         let count = 0;
         let color = '';
@@ -48,8 +54,8 @@ class ChessBoard extends React.Component {
         let disabled = true;
         let iconColor = '';
 
-        //Loop through each square on the board and give it an object with cell information
-        //Loop through each row
+    //Loop through each square on the board and give it an object with cell information
+    //Loop through each row
         for (let i = 0; i < this.boardLayout.length; i++) {
             temp = []
             disabled = true;
@@ -109,14 +115,7 @@ class ChessBoard extends React.Component {
                     }   
                 )
             }
-
-      //Initialize the state
-      this.state = {
-        //A 1d array with information about the current state of each square on the board
-        cellInfo: temp
-        }
-
-        
+            this.state.cellInfo.push(temp);
             
         }
 
@@ -164,6 +163,13 @@ class ChessBoard extends React.Component {
       }
   
       render() {
+        console.log('Checking cellCoordinate values:');
+        for (const arr of this.state.cellInfo) {
+            for (const curr of arr) {
+                console.log(curr.cellCoordinate);
+            }
+        }
+
 
         return (
             <table id='chessboard-table'>
